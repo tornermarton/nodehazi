@@ -1,0 +1,50 @@
+<%- include('header') %>
+<%- include('leftPanel') %>
+<div class="col-md-9 contentbox-frame">
+    <div class="contentbox">
+        <div class="">
+            <h1>Üdvözöllek az oldalon <%= user.firstName + " " + user.lastName %>!</h1>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-6">
+                <h4>Mai teendőid</h4>
+                <div class="contentbox-frame">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Matek fakt</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">2018.03.03.</h6>
+                            <p class="card-text">Házi feladat: 2016-os érettségi sor.</p>
+                            <form>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="done">
+                                    <span>Teljesítve</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <h4>Heti teendők</h4>
+                <div class="contentbox-frame">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Biológia</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">2018.03.08.</h6>
+                            <p class="card-text">Dolgozat: Idegrendszer.</p>
+                            <form>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="done">
+                                    <span>Teljesítve</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer') %>
+

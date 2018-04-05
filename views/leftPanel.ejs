@@ -1,0 +1,17 @@
+<div class="container-fluid content">
+    <div class="row justify-content-center">
+        <div class="col-12 row contentInner">
+            <div class="col-md-3 contentbox-frame" id="leftPanel">
+                <div class="contentbox">
+                    <div class="list-group" id="mainNav">
+                        <a href="/" class="list-group-item list-group-item-action active"><%= user.firstName + " " + user.lastName %></a>
+                        <a href="/auth/logout" class="list-group-item list-group-item-action">Kilépés</a>
+                    </div>
+                </div>
+                <div class="contentbox" id="groupList">
+                    <div class="list-group">
+                        <a href="/groups/1234" class="list-group-item list-group-item-action">Csoport neve</a>
+                        <a href="/groups/add" class="list-group-item list-group-item-action list-group-item-secondary">Csoport hozzáadása</a>
+                    </div>
+                </div>
+            </div>

@@ -1,0 +1,67 @@
+<%- include('../header') %>
+<%- include('../leftPanel') %>
+<div class="col-md-9 contentbox-frame">
+    <%- include('../groups/header') %>
+    <div class="contentbox">
+        <%- include('../groups/nav') %>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h4>Teendő hozzáadása</h4>
+                    <div class="contentbox-frame">
+                        <script>
+                            $( function() {
+                                $( "#datepicker" ).datepicker();
+                            } );
+                        </script>
+                        <form>
+                            <div class="form-group">
+                                <label for="taskType">Típus</label>
+                                <select class="form-control" id="teaskType">
+                                    <option>Dolgozat</option>
+                                    <option>Házifeladat</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="datepicker">Dátum</label>
+                                <input type="text" class="form-control" id="datepicker">
+                            </div>
+                            <div class="form-group">
+                                <label for="taskDescription">Leírás</label>
+                                <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary float-right">Hozzáadás</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h4>Tag hozzáadása</h4>
+                    <div class="contentbox-frame">
+                        <button type="button" class="btn btn-secondary">Hozzáadás listából</button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <form class="col-12">
+                    <div class="form-group">
+                        <label for="groupName">Csoport neve</label>
+                        <input type="text" class="form-control" id="groupName" value="Csoport neve">
+                    </div>
+                    <div class="form-group">
+                        <label for="groupDescription">Csoport leírása</label>
+                        <textarea class="form-control" id="groupDescription" rows="3">Csoport leírása</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-right">Adatok megváltoztatása</button>
+                </form>
+            </div>
+            <hr>
+            <div class="row justify-content-center">
+                <form>
+                    <button type="submit" class="btn btn-danger">Csoport törlése</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../footer') %>
