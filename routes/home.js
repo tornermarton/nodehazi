@@ -1,11 +1,25 @@
-var authMW = require('../middleware/auth/auth');
-var loginMW = require('../middleware/auth/login');
-var logoutMW = require('../middleware/auth/logout');
-var inverseAuthMW = require('../middleware/auth/inverseAuth');
-var renderMW = require('../middleware/render');
+//middlewares
+const authMW = require('../middleware/auth/auth');
+const loginMW = require('../middleware/auth/login');
+const logoutMW = require('../middleware/auth/logout');
+const inverseAuthMW = require('../middleware/auth/inverseAuth');
+const renderMW = require('../middleware/render');
+
+//models
+const userModel = require('../models/users');
+const groupModel = require('../models/groups');
+const memberModel = require('../models/members');
+const taskTypeModel = require('../models/task_types');
+const taskModel = require('../models/tasks');
 
 module.exports = function (app) {
-    var objectRepository = {};
+    const objectRepository = {
+        userModel: userModel,
+        groupModel: groupModel,
+        memberModel: memberModel,
+        taskTypeModel: taskTypeModel,
+        taskModel: taskModel
+    };
 
     app.get('/',
         function (req, res, next) {

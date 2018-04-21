@@ -1,10 +1,24 @@
-var authMW = require('../middleware/auth/auth');
-var membershipAuthMW = require('../middleware/auth/membershipAuth');
-var teacherAuthMW = require('../middleware/auth/teacherAuth');
-var renderMW = require('../middleware/render');
+//middlewares
+const authMW = require('../middleware/auth/auth');
+const membershipAuthMW = require('../middleware/auth/membershipAuth');
+const teacherAuthMW = require('../middleware/auth/teacherAuth');
+const renderMW = require('../middleware/render');
+
+//models
+const userModel = require('../models/users');
+const groupModel = require('../models/groups');
+const memberModel = require('../models/members');
+const taskTypeModel = require('../models/task_types');
+const taskModel = require('../models/tasks');
 
 module.exports = function (app) {
-    var objectRepository = {};
+    const objectRepository = {
+        userModel: userModel,
+        groupModel: groupModel,
+        memberModel: memberModel,
+        taskTypeModel: taskTypeModel,
+        taskModel: taskModel
+    };
 
     app.get('/groups/add',
         authMW(objectRepository),

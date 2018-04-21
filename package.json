@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "body-parser": "~1.18.2",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.1.0",
     "bower": "^1.8.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -19,7 +19,16 @@
     "mongoose": "^5.0.15",
     "morgan": "~1.9.0",
     "node-sass-middleware": "0.9.8",
-    "popper.js": "^1.12.9",
+    "popper.js": "^1.14.3",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^3.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^5.0.0"
   }
 }
