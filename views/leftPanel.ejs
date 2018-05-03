@@ -11,7 +11,9 @@
                 <div class="contentbox" id="groupList">
                     <div class="list-group">
                         <a href="/groups/1234" class="list-group-item list-group-item-action">Csoport neve</a>
+                        <% if (user.status !== 0) { %>
                         <a href="/groups/add" class="list-group-item list-group-item-action list-group-item-secondary">Csoport hozzáadása</a>
+                        <% } %>
                     </div>
                 </div>
             </div>

@@ -11,14 +11,17 @@
                     <div class="contentbox">
                         <h4>Bejelentkezés</h4>
                         <div>
-                            <form method="post" action="/auth/login">
+                            <form method="post" action="/auth/login" onsubmit="return login();">
                                 <div class="form-group">
                                     <label for="loginEmail">Email cím</label>
-                                    <input type="email" class="form-control" id="loginEmail" placeholder="minta@gmail.com">
+                                    <input type="email" class="form-control" name="email" id="loginEmail" placeholder="minta@gmail.com">
                                 </div>
                                 <div class="form-group">
                                     <label for="loginPassword">Jelszó</label>
-                                    <input type="password" class="form-control" id="loginPassword" placeholder="Jelszó">
+                                    <input type="password" class="form-control" name="password" id="loginPassword" placeholder="Jelszó">
+                                </div>
+                                <div class="alert alert-danger" role="alert" id="loginAlert">
+                                    Rossz email vagy jelszó!
                                 </div>
                                 <div class="form-group">
                                     <a href="#" class="small">Elfelejtett jelszó</a>
@@ -32,46 +35,91 @@
                      <div class="contentbox">
                          <h4>Regisztráció</h4>
                          <div class="">
-                             <form>
+                             <form action="/auth/register" method="post" onsubmit="return registration()">
                                  <div class="form-group">
-                                     <label for="regFirstname">Keresztnév</label>
-                                     <input type="email" class="form-control" id="regFirstname" placeholder="Miklós">
+                                     <label for="firstname">Keresztnév</label>
+                                     <input type="text" class="form-control" name="firstname" id="regFirstname" placeholder="Miklós">
+                                     <div class="invalid-feedback">
+                                         Nem adtál meg nevet!
+                                     </div>
                                  </div>
                                  <div class="form-group">
-                                     <label for="regLastname">Vezetéknév</label>
-                                     <input type="email" class="form-control" id="regLastname" placeholder="Minta">
+                                     <label for="lastname">Vezetéknév</label>
+                                     <input type="text" class="form-control" name="lastname" id="regLastname" placeholder="Minta">
+                                     <div class="invalid-feedback">
+                                         Nem adtál meg nevet!
+                                     </div>
                                  </div>
                                  <div class="form-group">
-                                     <label for="regEmail">Email cím</label>
-                                     <input type="email" class="form-control" id="regEmail" placeholder="minta@gmail.com">
+                                     <label for="email">Email cím</label>
+                                     <input type="email" class="form-control" name="email" id="regEmail" placeholder="minta@gmail.com" onblur="checkEmailConfirmation()">
+                                     <div class="invalid-feedback">
+                                         Ez az email cím már használatban van!
+                                     </div>
                                  </div>
                                  <div class="form-group">
-                                     <label for="regEmailAgain">Email cím megerősítése</label>
-                                     <input type="email" class="form-control" id="regEmailAgain" placeholder="minta@gmail.com">
+                                     <label for="emailAgain">Email cím megerősítése</label>
+                                     <input type="email" class="form-control" name="emailAgain" id="regEmailAgain" placeholder="minta@gmail.com" onblur="checkEmailConfirmation()">
+                                     <div class="invalid-feedback">
+                                         Nem egyezik a két email cím!
+                                     </div>
                                  </div>
                                  <div class="form-group">
-                                     <label for="regPassword">Jelszó</label>
-                                     <input type="password" class="form-control" id="regPassword" placeholder="Jelszó">
+                                     <label for="password">Jelszó</label>
+                                     <input type="password" class="form-control" name="password" id="regPassword" placeholder="Jelszó" onblur="checkPasswordConfirmation()">
+                                     <div class="invalid-feedback">
+                                         Nem egyezik a két jelszó!
+                                     </div>
                                  </div>
                                  <div class="form-group">
-                                     <label for="regPasswordAgain">Jelszó megerősítése</label>
-                                     <input type="password" class="form-control" id="regPasswordAgain" placeholder="Jelszó">
+                                     <label for="passwordAgain">Jelszó megerősítése</label>
+                                     <input type="password" class="form-control" name="passwordAgain" id="regPasswordAgain" placeholder="Jelszó" onblur="checkPasswordConfirmation()">
+                                     <div class="invalid-feedback">
+                                         Nem egyezik a két jelszó!
+                                     </div>
                                  </div>
                                  <div class="form-group container-fluid">
                                      <legend class="col-form-label row">Státusz</legend>
                                      <div class="row">
                                          <div class="form-check col-6 offset-1">
-                                             <input class="form-check-input" type="radio" name="status" id="studentStatus" value="student" checked>
+                                             <input class="form-check-input" type="radio" name="status" id="regStudentStatus" value="0" checked>
                                              <label class="form-check-label" for="studentStatus">
                                                  Tanuló
                                              </label>
                                          </div>
                                          <div class="form-check col-5">
-                                             <input class="form-check-input" type="radio" name="status" id="teacherStatus" value="teacher">
+                                             <input class="form-check-input" type="radio" name="status" id="regTeacherStatus" value="1">
                                              <label class="form-check-label" for="teacherStatus">
                                                  Tanár
                                              </label>
                                          </div>
+                                     </div>
+                                 </div>
+                                 <label>Születésnap</label>
+                                 <div class="form-row">
+                                     <div class="form-group col-md-4">
+                                         <select id="regDOByear" class="form-control" name="DOByear" >
+                                             <option value="0" selected>Év</option>
+                                             <% for (let i = 2018; i > 1900; --i) { %>
+                                             <option value="<%= i %>>"><%= i %></option>
+                                             <% } %>
+                                         </select>
+                                     </div>
+                                     <div class="form-group col-md-4">
+                                         <select id="regDOBmonth" class="form-control" name="DOBmonth">
+                                             <option value="0" selected>Hónap</option>
+                                             <% for (let i = 1; i < 13; ++i) { %>
+                                             <option value="<%= i %>>"><%= i %></option>
+                                             <% } %>
+                                         </select>
+                                     </div>
+                                     <div class="form-group col-md-4">
+                                         <select id="regDOBday" class="form-control" name="DOBday">
+                                             <option value="0" selected>Nap</option>
+                                             <% for (let i = 1; i < 32; ++i) { %>
+                                             <option value="<%= i %>>"><%= i %></option>
+                                             <% } %>
+                                         </select>
                                      </div>
                                  </div>
                                  <button type="submit" class="btn btn-primary">Regisztrálok</button>

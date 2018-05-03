@@ -6290,3 +6290,6 @@ a.text-dark:hover, a.text-dark:focus {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box; }
+
+.alert-danger {
+  display: none; }

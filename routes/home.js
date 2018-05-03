@@ -1,6 +1,7 @@
 //middlewares
 const authMW = require('../middleware/auth/auth');
 const loginMW = require('../middleware/auth/login');
+const registrationMW = require('../middleware/auth/registration');
 const logoutMW = require('../middleware/auth/logout');
 const inverseAuthMW = require('../middleware/auth/inverseAuth');
 const renderMW = require('../middleware/render');
@@ -36,6 +37,11 @@ module.exports = function (app) {
     app.post('/auth/login',
         inverseAuthMW(objectRepository),
         loginMW(objectRepository)
+    );
+
+    app.post('/auth/register',
+        inverseAuthMW(objectRepository),
+        registrationMW(objectRepository)
     );
 
     app.use('/auth/logout',

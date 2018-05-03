@@ -2,6 +2,7 @@
 const authMW = require('../middleware/auth/auth');
 const membershipAuthMW = require('../middleware/auth/membershipAuth');
 const teacherAuthMW = require('../middleware/auth/teacherAuth');
+const addGroupMW = require('../middleware/groups/addGroup');
 const renderMW = require('../middleware/render');
 
 //models
@@ -22,7 +23,14 @@ module.exports = function (app) {
 
     app.get('/groups/add',
         authMW(objectRepository),
+        teacherAuthMW(objectRepository),
         renderMW(objectRepository,'addgroup')
+    );
+
+    app.post('/groups/add',
+        authMW(objectRepository),
+        teacherAuthMW(objectRepository),
+        addGroupMW(objectRepository)
     );
 
     app.get('/groups/:id',
