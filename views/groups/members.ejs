@@ -6,23 +6,22 @@
         <%- include('../groups/nav') %>
         <div class="container">
             <div class="row">
+                <% for( let i = 0 ; i < memberList.length ; ++i) { %>
                 <div class="contentbox-frame col-4">
                     <div class="card">
                         <img class="card-img-top" src="/images/profile.jpg" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title">Minta Miklós</h5>
+                            <h5 class="card-title"><%= memberList[i].firstname + " " + memberList[i].lastname %></h5>
+                            <% if (user.status !== 0 && memberList[i].id != user.id) { %>
+                            <form action="/groups/<%= actGroup.url_id %>/members/remove" method="post">
+                                <input name="user_id" value="<%= memberList[i].id %>" hidden>
+                                <button class="btn btn-danger" type="submit">Eltávolítás</button>
+                            </form>
+                            <% } %>
                         </div>
                     </div>
                 </div>
-                <div class="contentbox-frame col-4">
-                    <div class="card">
-                        <img class="card-img-top" src="/images/profile.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Másik Marcell</h5>
-                            <a href="#" class="card-link text-danger">Eltávolítás</a>
-                        </div>
-                    </div>
-                </div>
+                <% } %>
             </div>
         </div>
     </div>

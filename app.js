@@ -57,7 +57,7 @@ d * /groups/:id/delete                   POST    csoport törlése              
  *
  * /groups/:id/members/add              GET     diákok listája                                                          GetStudentListMW-
 d * /groups/:id/members/add              POST    diák hozzáadása                                                         AddMemberMW-
- * /groups/:id/members/delete           POST    diák törlése a csoportból                                               RemoveMemberMW-
+d * /groups/:id/members/remove           POST    diák törlése a csoportból                                               RemoveMemberMW-
  *
  * /groups/:id/changeinfo               POST    csoport beállításainak elmentése (név, leírás, bármi egyéb felmerülő)   ChangeGroupInfoMW
  **/

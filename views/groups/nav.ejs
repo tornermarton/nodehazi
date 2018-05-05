@@ -2,7 +2,9 @@
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link" href="/groups/<%= actGroup.url_id %>">Teendők</a>
         <a class="nav-item nav-link" href="/groups/<%= actGroup.url_id %>/members">Tagok</a>
+        <% if (user.status === 1) { %>
         <a class="nav-item nav-link" href="/groups/<%= actGroup.url_id %>/teacher">Tanári oldal</a>
+        <% } %>
     </div>
 </nav>
 <br>
