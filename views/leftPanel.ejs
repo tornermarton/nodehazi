@@ -10,7 +10,9 @@
                 </div>
                 <div class="contentbox" id="groupList">
                     <div class="list-group">
-                        <a href="/groups/1234" class="list-group-item list-group-item-action">Csoport neve</a>
+                        <% for( let i = 0 ; i < groupList.length ; ++i) { %>
+                        <a href="/groups/<%= groupList[i].url_id %>" class="list-group-item list-group-item-action"><%= groupList[i].name%></a>
+                        <% } %>
                         <% if (user.status !== 0) { %>
                         <a href="/groups/add" class="list-group-item list-group-item-action list-group-item-secondary">Csoport hozzáadása</a>
                         <% } %>

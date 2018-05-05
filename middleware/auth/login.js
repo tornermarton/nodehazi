@@ -1,7 +1,7 @@
 const requireOption = require('../common').requireOption;
 
-module.exports = function (objectrepository) {
-    const UserModel = requireOption(objectrepository,'userModel');
+module.exports = function (objectRepository) {
+    const UserModel = requireOption(objectRepository,'userModel');
 
     return function (req, res, next) {
         //not enough parameter
@@ -54,7 +54,6 @@ module.exports = function (objectrepository) {
                 error: null
             });
             res.end();
-            return;
         });
     };
 

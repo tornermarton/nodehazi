@@ -64,6 +64,30 @@ function login() {
     return false;
 }
 
+function addGroup() {
+    if (!checkAddGroup())
+        return false;
+
+    $.ajax({
+        url: '/groups/add',
+        method: 'post',
+        dataType: 'json',
+        data: {
+            'name': $('#addGroupName').val().trim(),
+            'description': $('#addGroupDescription').val().trim()
+        }
+    }).done( function (result){
+        if (!result.success){
+            alert(result.error);
+            return false;
+        }
+
+        window.location.reload(true);
+    });
+
+    return false;
+}
+
 function checkEmailConfirmation() {
     const email = $('#regEmail');
     const emailConf = $('#regEmailAgain');
@@ -126,4 +150,15 @@ function checkName() {
     }
 
     return $('#regFirstname').val().trim() !== "" && $('#regLastname').val().trim() !== "";
+}
+
+function checkAddGroup() {
+    if ($('#addGroupName').val().trim() === "") {
+        $('#addGroupName').addClass('is-invalid');
+    }
+    if ($('#addGroupDescription').val().trim() === "") {
+        $('#addGroupDescription').addClass('is-invalid');
+    }
+
+    return $('#addGroupName').val().trim() !== "" && $('#addGroupDescription').val().trim() !== "";
 }

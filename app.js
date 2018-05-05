@@ -34,29 +34,29 @@ app.use(cookieParser());
 /**
  * Routes
  *
- * /                GET     főoldal: startpage (login+register), ha nincs bejelentkezve, ha be van akkor homepage       AuthMW-
+d * /                GET     főoldal: startpage (login+register), ha nincs bejelentkezve, ha be van akkor homepage       AuthMW-
  *
- * /auth/login           POST    bejelntkezés kezelése                                                                  LoginMW-
- * /auth/registration    POST    regisztráció kezelése                                                                  RegistrationMW-
- * /auth/logout          USE     kijelentkezés (ha van bejelentkezett felhasználó                                       LogoutMW-
+d * /auth/login           POST    bejelntkezés kezelése                                                                  LoginMW-
+d * /auth/registration    POST    regisztráció kezelése                                                                  RegistrationMW-
+d * /auth/logout          USE     kijelentkezés (ha van bejelentkezett felhasználó                                       LogoutMW-
  *
- * /group/:id           GET     az adott id-jű csoport főoldala                                                         MembershipAuthMW-
- * /groups/add          GET     új csoport hozzáadása form                                                              AddGroupMW-
- * /groups/add          POST    új csoport hozzáadása (beküldött form kezelése                                          (AddGroupMW)-
- * /groups/:id/members  GET     csoport tagjainak listája                                                               GetMemberListMW-
+d * /group/:id           GET     az adott id-jű csoport főoldala                                                         MembershipAuthMW-
+d * /groups/add          GET     új csoport hozzáadása form                                                              AddGroupMW-
+d * /groups/add          POST    új csoport hozzáadása (beküldött form kezelése                                          (AddGroupMW)-
+d * /groups/:id/members  GET     csoport tagjainak listája                                                               GetMemberListMW-
  *
  * /groups/:id/tasks/:taskid/markcompleted      POST    az adott task megjelölése elkészítettként                       MarkTaskCompletedMW-
  *
  * EZEK CSAK TANÁROKNAK ELÉRHETŐEK:                                                                                     TeacherAuthMW-
- * /groups/:id/teacher                  GET     csoport tanari oldala                                                   (TeacherAuthMW)-
- * /groups/:id/delete                   POST    csoport törlése                                                         DeleteGroupMW-
+d * /groups/:id/teacher                  GET     csoport tanari oldala                                                   (TeacherAuthMW)-
+d * /groups/:id/delete                   POST    csoport törlése                                                         DeleteGroupMW-
  * /groups/:id/tasks/add                POST    új feladat hozzáadása az adott csoportnak                               AddTaskMW-
  * /groups/:id/tasks/:taskid/delete     POST    task törlése                                                            DeleteTaskMW-
  * /groups/:id/tasks/:taskid/edit       GET     task szerkesztésének formja                                             EditTaskMW-
  * /groups/:id/tasks/:taskid/edit       POST    task szerkesztésének elmentése                                          (EditTaskMW)-
  *
  * /groups/:id/members/add              GET     diákok listája                                                          GetStudentListMW-
- * /groups/:id/members/add              POST    diák hozzáadása                                                         AddMemberMW-
+d * /groups/:id/members/add              POST    diák hozzáadása                                                         AddMemberMW-
  * /groups/:id/members/delete           POST    diák törlése a csoportból                                               RemoveMemberMW-
  *
  * /groups/:id/changeinfo               POST    csoport beállításainak elmentése (név, leírás, bármi egyéb felmerülő)   ChangeGroupInfoMW

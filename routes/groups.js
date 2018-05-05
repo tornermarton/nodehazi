@@ -3,6 +3,9 @@ const authMW = require('../middleware/auth/auth');
 const membershipAuthMW = require('../middleware/auth/membershipAuth');
 const teacherAuthMW = require('../middleware/auth/teacherAuth');
 const addGroupMW = require('../middleware/groups/addGroup');
+const deleteGroupMW = require('../middleware/groups/deleteGroup');
+const addMemberMW = require('../middleware/groups/addMember');
+const getGroupListMW = require('../middleware/groups/getGroupList');
 const renderMW = require('../middleware/render');
 
 //models
@@ -23,6 +26,7 @@ module.exports = function (app) {
 
     app.get('/groups/add',
         authMW(objectRepository),
+        getGroupListMW(objectRepository),
         teacherAuthMW(objectRepository),
         renderMW(objectRepository,'addgroup')
     );
@@ -30,17 +34,20 @@ module.exports = function (app) {
     app.post('/groups/add',
         authMW(objectRepository),
         teacherAuthMW(objectRepository),
-        addGroupMW(objectRepository)
+        addGroupMW(objectRepository),
+        addMemberMW(objectRepository)
     );
 
     app.get('/groups/:id',
         authMW(objectRepository),
+        getGroupListMW(objectRepository),
         membershipAuthMW(objectRepository),
         renderMW(objectRepository,'groups/tasks')
     );
 
     app.get('/groups/:id/members',
         authMW(objectRepository),
+        getGroupListMW(objectRepository),
         membershipAuthMW(objectRepository),
         renderMW(objectRepository,'groups/members')
     );
@@ -49,6 +56,21 @@ module.exports = function (app) {
         authMW(objectRepository),
         membershipAuthMW(objectRepository),
         teacherAuthMW(objectRepository),
+        getGroupListMW(objectRepository),
         renderMW(objectRepository,'groups/teacher')
+    );
+
+    app.post('/groups/:id/delete',
+        authMW(objectRepository),
+        membershipAuthMW(objectRepository),
+        teacherAuthMW(objectRepository),
+        deleteGroupMW(objectRepository)
+    );
+
+    app.get('/groups/:id/members/add',
+        authMW(objectRepository),
+        membershipAuthMW(objectRepository),
+        teacherAuthMW(objectRepository),
+        addMemberMW(objectRepository)
     );
 };

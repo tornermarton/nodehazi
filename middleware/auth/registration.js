@@ -1,8 +1,8 @@
 const requireOption = require('../common').requireOption;
 
-module.exports = function (objectrepository) {
+module.exports = function (objectRepository) {
 
-    const UserModel = requireOption(objectrepository,'userModel');
+    const UserModel = requireOption(objectRepository,'userModel');
 
     return function (req, res, next) {
         //not enough parameter
@@ -48,7 +48,6 @@ module.exports = function (objectrepository) {
 
             newUser.save(function (err) {
                 if (err) console.error(err);
-                res.setHeader('Content-Type', 'application/json');
                 res.json({
                     success: true,
                     error: null
