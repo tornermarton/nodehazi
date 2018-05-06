@@ -217,6 +217,16 @@ function addTask(form) {
     return false;
 }
 
+function editTaskCheck(form){
+    let time = $('input[name="deadline"]');
+    if (time.val() === '' || new Date(time.val()) < Date.now() ) {
+        time.addClass('is-invalid');
+        return false;
+    }
+
+    return true;
+}
+
 function taskCompleted(element){
     element.disabled = true;
 

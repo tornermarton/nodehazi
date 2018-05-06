@@ -1,0 +1,33 @@
+<%- include('../header') %>
+<%- include('../leftPanel') %>
+<div class="col-md-9 contentbox-frame">
+    <div class="contentbox">
+        <script>
+            $( function() {
+                $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+            } );
+        </script>
+        <form action="/groups/<%= actGroup.url_id %>/tasks/<%= taskInfo.url_id %>/edit" method="post" onsubmit="return editTaskCheck(this);">
+            <div class="form-group">
+                <label for="taskType">Típus</label>
+                <select class="form-control" name="type" id="taskType">
+                    <% for( let i = 0 ; i < taskTypeList.length ; ++i) { %>
+                    <option value="<%= taskTypeList[i].name %>"><%= taskTypeList[i].name %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="datepicker">Dátum</label>
+                <input type="text" class="form-control" name="deadline" id="datepicker" value="<%= taskInfo.deadline.getFullYear() + "-" + (taskInfo.deadline.getMonth() + 1) + "-" + taskInfo.deadline.getDate() %>">
+            </div>
+            <div class="form-group">
+                <label for="taskDescription">Leírás</label>
+                <textarea class="form-control" name="description" id="taskDescription" rows="3"><%= taskInfo.description %></textarea>
+            </div>
+            <div class="clearfix">
+                <button type="submit" class="btn btn-primary float-right">Mentés</button>
+            </div>
+        </form>
+    </div>
+</div>
+<%- include('../footer') %>
