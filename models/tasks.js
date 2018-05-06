@@ -7,17 +7,10 @@ const Tasks = db.model('tasks', {
         type: Schema.Types.ObjectId,
         ref: 'groups'
     },
-    _user: {
-        type: Schema.Types.ObjectId,
-        ref: 'users'
-    },
-    _task_type: {
-        type: Schema.Types.ObjectId,
-        ref: 'task_types'
-    },
+    task_type: String,
     description: String,
     deadline: Date,
-    is_completed: Boolean
+    completed_for: [Schema.Types.ObjectId]
 });
 
 module.exports = Tasks;

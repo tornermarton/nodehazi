@@ -45,12 +45,12 @@ d * /groups/add          GET     új csoport hozzáadása form                  
 d * /groups/add          POST    új csoport hozzáadása (beküldött form kezelése                                          (AddGroupMW)-
 d * /groups/:id/members  GET     csoport tagjainak listája                                                               GetMemberListMW-
  *
- * /groups/:id/tasks/:taskid/markcompleted      POST    az adott task megjelölése elkészítettként                       MarkTaskCompletedMW-
+d * /groups/:id/tasks/:taskid/markcompleted      POST    az adott task megjelölése elkészítettként                       MarkTaskCompletedMW-
  *
  * EZEK CSAK TANÁROKNAK ELÉRHETŐEK:                                                                                     TeacherAuthMW-
 d * /groups/:id/teacher                  GET     csoport tanari oldala                                                   (TeacherAuthMW)-
 d * /groups/:id/delete                   POST    csoport törlése                                                         DeleteGroupMW-
- * /groups/:id/tasks/add                POST    új feladat hozzáadása az adott csoportnak                               AddTaskMW-
+d * /groups/:id/tasks/add                POST    új feladat hozzáadása az adott csoportnak                               AddTaskMW-
  * /groups/:id/tasks/:taskid/delete     POST    task törlése                                                            DeleteTaskMW-
  * /groups/:id/tasks/:taskid/edit       GET     task szerkesztésének formja                                             EditTaskMW-
  * /groups/:id/tasks/:taskid/edit       POST    task szerkesztésének elmentése                                          (EditTaskMW)-
