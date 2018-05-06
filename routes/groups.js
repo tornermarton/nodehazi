@@ -15,6 +15,7 @@ const getGroupListMW = require('../middleware/groups/getGroupList');
 const getMemberListMW = require('../middleware/groups/getMemberList');
 const getStudentListMW = require('../middleware/users/getStudentList');
 const getTaskTypeListMW = require('../middleware/tasks/getTaskTypeList');
+const getGroupTaskListMW = require('../middleware/tasks/getGroupTaskList');
 const renderMW = require('../middleware/render');
 
 //models
@@ -51,6 +52,7 @@ module.exports = function (app) {
         authMW(objectRepository),
         getGroupListMW(objectRepository),
         membershipAuthMW(objectRepository),
+        getGroupTaskListMW(objectRepository),
         renderMW(objectRepository,'groups/tasks')
     );
 
@@ -62,7 +64,7 @@ module.exports = function (app) {
         renderMW(objectRepository,'groups/members')
     );
 
-    app.post('/groups/:id/tasks/:taskid/markcompleted',
+    app.use('/groups/:id/tasks/:taskid/markcompleted',
         authMW(objectRepository),
         membershipAuthMW(objectRepository),
         markTaskCompletedMW(objectRepository)
@@ -89,6 +91,13 @@ module.exports = function (app) {
         membershipAuthMW(objectRepository),
         teacherAuthMW(objectRepository),
         addTaskMW(objectRepository)
+    );
+
+    app.use('/groups/:id/tasks/:taskid/delete',
+        authMW(objectRepository),
+        membershipAuthMW(objectRepository),
+        teacherAuthMW(objectRepository),
+        deleteTaskMW(objectRepository)
     );
 
     app.get('/groups/:id/members/add',

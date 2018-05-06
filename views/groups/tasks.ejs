@@ -6,21 +6,30 @@
         <%- include('../groups/nav') %>
         <div class="container">
             <div class="row">
+                <% for( let i = 0 ; i < groupTaskList.length ; ++i) { %>
                 <div class="contentbox-frame col-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Dolgozat</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">2018.03.08.</h6>
-                            <p class="card-text">Leírás</p>
-                            <form>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="done">
-                                    <span>Teljesítve</span>
-                                </div>
-                            </form>
+                            <h5 class="card-title"><%= groupTaskList[i].type %></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= groupTaskList[i].deadline %></h6>
+                            <p class="card-text"><%= groupTaskList[i].description %></p>
+                            <% if (user.status === 0) { %>
+                            <div class="form-check">
+                                <input class="form-check-input task-completed" type="checkbox" data-action="/groups/<%= actGroup.url_id %>/tasks/<%= groupTaskList[i].url_id %>/markcompleted" onchange="return taskCompleted(this)">
+                                <span>Teljesítve</span>
+                            </div>
+                            <% } else {%>
+                            <div>
+                                <a href="/groups/<%= actGroup.url_id %>/tasks/<%= groupTaskList[i].url_id %>/edit">Szerkesztés</a>
+                            </div>
+                            <div>
+                                <a href="/groups/<%= actGroup.url_id %>/tasks/<%= groupTaskList[i].url_id %>/delete" class="text-danger" onclick="return confirm('Biztosan törlöd?')">Törlés</a>
+                            </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>
+                <% } %>
             </div>
         </div>
     </div>

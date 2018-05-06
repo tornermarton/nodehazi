@@ -3,10 +3,10 @@
         $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
     } );
 </script>
-<form action="/groups/<%= actGroup.url_id %>/tasks/add" method="post">
+<form action="/groups/<%= actGroup.url_id %>/tasks/add" method="post" onsubmit="return addTask(this);">
     <div class="form-group">
         <label for="taskType">Típus</label>
-        <select class="form-control" name="type" id="teaskType">
+        <select class="form-control" name="type" id="taskType">
             <% for( let i = 0 ; i < taskTypeList.length ; ++i) { %>
             <option value="<%= taskTypeList[i].name %>"><%= taskTypeList[i].name %></option>
             <% } %>

@@ -184,3 +184,56 @@ function addMember(form) {
 
     return false;
 }
+
+function addTask(form) {
+    let time = $('input[name="deadline"]');
+    if (time.val() === '' || new Date(time.val()) < Date.now() ) {
+        time.addClass('is-invalid');
+        return false;
+    }
+
+    $.ajax({
+        url: form.getAttribute('action'),
+        method: 'post',
+        dataType: 'json',
+        data: {
+            'type' : $('#taskType').val(),
+            'deadline': time.val(),
+            'description': $('#taskDescription').val().trim()
+        }
+    }).done( function (result){
+        if (!result.success){
+
+            alert(result.error);
+            return false;
+        }
+
+        time.val('');
+        $('#taskDescription').val('');
+
+        return false;
+    });
+
+    return false;
+}
+
+function taskCompleted(element){
+    element.disabled = true;
+
+    $.ajax({
+        url: element.getAttribute('data-action'),
+        method: 'post',
+        dataType: 'json',
+        data: {}
+    }).done( function (result){
+        if (!result.success){
+            alert(result.error);
+            element.disabled = false;
+            element.checked = false;
+            return false;
+        }
+
+        $(element).parent().parent().parent().parent().remove();
+        return false;
+    });
+}

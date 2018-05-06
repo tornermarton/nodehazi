@@ -9,39 +9,57 @@
         <div class="row">
             <div class="col-6">
                 <h4>Mai teendőid</h4>
+                <% for( let i = 0 ; i < todayTaskList.length ; ++i) { %>
                 <div class="contentbox-frame">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Matek fakt</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">2018.03.03.</h6>
-                            <p class="card-text">Házi feladat: 2016-os érettségi sor.</p>
-                            <form>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="done">
-                                    <span>Teljesítve</span>
-                                </div>
-                            </form>
+                            <h5 class="card-title"><%= todayTaskList[i]._group.name %></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= todayTaskList[i].deadline.getFullYear() + '. ' + (todayTaskList[i].deadline.getMonth() + 1) + '. ' + todayTaskList[i].deadline.getDate() + '.' %></h6>
+                            <p class="card-text"><%= todayTaskList[i].task_type + ': ' + todayTaskList[i].description %></p>
+                            <% if (user.status === 0) { %>
+                            <div class="form-check">
+                                <input class="form-check-input task-completed" type="checkbox" data-action="/groups/<%= todayTaskList[i]._group.url_id %>/tasks/<%= todayTaskList[i].url_id %>/markcompleted" onchange="return taskCompleted(this)">
+                                <span>Teljesítve</span>
+                            </div>
+                            <% } else {%>
+                            <div>
+                                <a href="/groups/<%= todayTaskList[i]._group.url_id %>/tasks/<%= todayTaskList[i].url_id %>/edit">Szerkesztés</a>
+                            </div>
+                            <div>
+                                <a href="/groups/<%= todayTaskList[i]._group.url_id %>/tasks/<%= todayTaskList[i].url_id %>/delete" class="text-danger" onclick="return confirm('Biztosan törlöd?')">Törlés</a>
+                            </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>
+                <% } %>
             </div>
             <div class="col-6">
                 <h4>Heti teendők</h4>
+                <% for( let i = 0 ; i < weekTaskList.length ; ++i) { %>
                 <div class="contentbox-frame">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Biológia</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">2018.03.08.</h6>
-                            <p class="card-text">Dolgozat: Idegrendszer.</p>
-                            <form>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="done">
-                                    <span>Teljesítve</span>
-                                </div>
-                            </form>
+                            <h5 class="card-title"><%= weekTaskList[i]._group.name %></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= weekTaskList[i].deadline.getFullYear() + '. ' + (weekTaskList[i].deadline.getMonth() + 1) + '. ' + weekTaskList[i].deadline.getDate() + '.' %></h6>
+                            <p class="card-text"><%= weekTaskList[i].task_type + ': ' + weekTaskList[i].description %></p>
+                            <% if (user.status === 0) { %>
+                            <div class="form-check">
+                                <input class="form-check-input task-completed" type="checkbox" data-action="/groups/<%= weekTaskList[i]._group.url_id %>/tasks/<%= weekTaskList[i].url_id %>/markcompleted" onchange="return taskCompleted(this)">
+                                <span>Teljesítve</span>
+                            </div>
+                            <% } else {%>
+                            <div>
+                                <a href="/groups/<%= weekTaskList[i]._group.url_id %>/tasks/<%= weekTaskList[i].url_id %>/edit">Szerkesztés</a>
+                            </div>
+                            <div>
+                                <a href="/groups/<%= weekTaskList[i]._group.url_id %>/tasks/<%= weekTaskList[i].url_id %>/delete" class="text-danger" onclick="return confirm('Biztosan törlöd?')">Törlés</a>
+                            </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>
+                <% } %>
             </div>
         </div>
     </div>

@@ -25,7 +25,7 @@
             </div>
             <hr>
             <div class="row justify-content-center">
-                <form method="post" action="/groups/<%= actGroup.url_id %>/delete">
+                <form method="post" action="/groups/<%= actGroup.url_id %>/delete" onsubmit="return confirm('Biztosan törlöd a csoportot? A művelet nem vonható vissza!')">
                     <button type="submit" class="btn btn-danger">Csoport törlése</button>
                 </form>
             </div>

@@ -8,11 +8,23 @@ module.exports = function (objectRepository) {
         TaskModel.update(
             { url_id: req.params.taskid },
             { "$push": { "completed_for": req.session.user.id } },
-            function (err, results) {
+            function (err) {
                 if (err) {
                     console.error(err);
-                    return next();
+                    res.json({
+                        success: false,
+                        error: "DatabaseError"
+                    });
+                    res.end();
+                    return;
                 }
+
+                res.json({
+                    success: true,
+                    error: null
+                });
+                res.end();
+                return;
         });
     }
 };

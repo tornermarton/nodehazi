@@ -51,7 +51,7 @@ d * /groups/:id/tasks/:taskid/markcompleted      POST    az adott task megjelöl
 d * /groups/:id/teacher                  GET     csoport tanari oldala                                                   (TeacherAuthMW)-
 d * /groups/:id/delete                   POST    csoport törlése                                                         DeleteGroupMW-
 d * /groups/:id/tasks/add                POST    új feladat hozzáadása az adott csoportnak                               AddTaskMW-
- * /groups/:id/tasks/:taskid/delete     POST    task törlése                                                            DeleteTaskMW-
+d * /groups/:id/tasks/:taskid/delete     POST    task törlése                                                            DeleteTaskMW-
  * /groups/:id/tasks/:taskid/edit       GET     task szerkesztésének formja                                             EditTaskMW-
  * /groups/:id/tasks/:taskid/edit       POST    task szerkesztésének elmentése                                          (EditTaskMW)-
  *

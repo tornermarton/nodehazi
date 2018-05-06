@@ -27,7 +27,7 @@ module.exports = function (objectRepository) {
 
                 UserModel.find({ status : 0, _id : { $nin: memberIdList } })
                     .select('_id firstname lastname')
-                    .sort('-firstname')
+                    .sort({firstname: 'asc'})
                     .exec(function (err, results) {
                         if ((err)) {
                             console.error(err);

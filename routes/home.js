@@ -5,6 +5,7 @@ const registrationMW = require('../middleware/auth/registration');
 const logoutMW = require('../middleware/auth/logout');
 const inverseAuthMW = require('../middleware/auth/inverseAuth');
 const getGroupListMW = require('../middleware/groups/getGroupList');
+const getHomepageTaskListMW = require('../middleware/tasks/getHomepageTaskList');
 const renderMW = require('../middleware/render');
 
 //models
@@ -33,6 +34,7 @@ module.exports = function (app) {
         },
         authMW(objectRepository),
         getGroupListMW(objectRepository),
+        getHomepageTaskListMW(objectRepository),
         renderMW(objectRepository,'homepage')
     );
 

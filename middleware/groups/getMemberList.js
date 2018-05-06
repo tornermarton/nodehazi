@@ -16,7 +16,9 @@ module.exports = function (objectRepository) {
             MemberModel.find({_group: result._id}).populate({
                 path: '_user',
                 select: '_id firstname lastname'
-            }).exec(function (err, results) {
+            })
+            .sort({firstname: 'asc'})
+            .exec(function (err, results) {
                 if ((err)) {
                     console.error(err);
                     return next();
