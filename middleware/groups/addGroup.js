@@ -45,7 +45,7 @@ module.exports = function (objectRepository) {
 
             //save membership
             req.body.user_id = req.session.userId;
-            req.body.group_id = newGroup._id;
+            req.params.id = newGroup.url_id;
 
             //add group to list
             req.session.groupList.push({ url_id: newGroup.url_id, name: newGroup.name});

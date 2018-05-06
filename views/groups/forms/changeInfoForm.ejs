@@ -1,0 +1,11 @@
+<form class="col-12" action="/groups/<%= actGroup.url_id %>/changeinfo" method="post">
+    <div class="form-group">
+        <label for="groupName">Csoport neve</label>
+        <input type="text" class="form-control" name="groupName" id="groupName" value="<%= actGroup.name %>">
+    </div>
+    <div class="form-group">
+        <label for="groupDescription">Csoport leírása</label>
+        <textarea class="form-control" name="groupDescription" id="groupDescription" rows="3"><%= actGroup.description %></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary float-right">Adatok megváltoztatása</button>
+</form>

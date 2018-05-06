@@ -55,11 +55,11 @@ d * /groups/:id/delete                   POST    csoport törlése              
  * /groups/:id/tasks/:taskid/edit       GET     task szerkesztésének formja                                             EditTaskMW-
  * /groups/:id/tasks/:taskid/edit       POST    task szerkesztésének elmentése                                          (EditTaskMW)-
  *
- * /groups/:id/members/add              GET     diákok listája                                                          GetStudentListMW-
+d * /groups/:id/members/add              GET     diákok listája                                                          GetStudentListMW-
 d * /groups/:id/members/add              POST    diák hozzáadása                                                         AddMemberMW-
 d * /groups/:id/members/remove           POST    diák törlése a csoportból                                               RemoveMemberMW-
  *
- * /groups/:id/changeinfo               POST    csoport beállításainak elmentése (név, leírás, bármi egyéb felmerülő)   ChangeGroupInfoMW
+d * /groups/:id/changeinfo               POST    csoport beállításainak elmentése (név, leírás, bármi egyéb felmerülő)   ChangeGroupInfoMW
  **/
 
 require('./routes/home')(app);

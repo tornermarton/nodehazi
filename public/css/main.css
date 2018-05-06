@@ -6293,3 +6293,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .alert-danger {
   display: none; }
+
+.small-text {
+  font-size: 12px;
+  padding: 4px; }

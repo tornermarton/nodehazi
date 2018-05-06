@@ -6,8 +6,10 @@ const addGroupMW = require('../middleware/groups/addGroup');
 const deleteGroupMW = require('../middleware/groups/deleteGroup');
 const addMemberMW = require('../middleware/groups/addMember');
 const removeMemberMW = require('../middleware/groups/removeMember');
+const changeGroupInfoMW = require('../middleware/groups/changeGroupInfo');
 const getGroupListMW = require('../middleware/groups/getGroupList');
 const getMemberListMW = require('../middleware/groups/getMemberList');
+const getStudentListMW = require('../middleware/users/getStudentList');
 const renderMW = require('../middleware/render');
 
 //models
@@ -70,6 +72,15 @@ module.exports = function (app) {
         deleteGroupMW(objectRepository)
     );
 
+    app.get('/groups/:id/members/add',
+        authMW(objectRepository),
+        membershipAuthMW(objectRepository),
+        teacherAuthMW(objectRepository),
+        getGroupListMW(objectRepository),
+        getStudentListMW(objectRepository),
+        renderMW(objectRepository,'groups/addMembers')
+    );
+
     app.post('/groups/:id/members/add',
         authMW(objectRepository),
         membershipAuthMW(objectRepository),
@@ -82,5 +93,12 @@ module.exports = function (app) {
         membershipAuthMW(objectRepository),
         teacherAuthMW(objectRepository),
         removeMemberMW(objectRepository)
+    );
+
+    app.post('/groups/:id/changeinfo',
+        authMW(objectRepository),
+        membershipAuthMW(objectRepository),
+        teacherAuthMW(objectRepository),
+        changeGroupInfoMW(objectRepository)
     );
 };

@@ -1,0 +1,22 @@
+<%- include('../header') %>
+<%- include('../leftPanel') %>
+<div class="col-md-9 contentbox-frame">
+    <div class="contentbox">
+        <ul class="list-group">
+            <% for( let i = 0 ; i < studentList.length ; ++i) { %>
+            <li class="list-group-item">
+                <div class="float-left">
+                    <%= studentList[i].firstname + " " + studentList[i].lastname %>
+                </div>
+                <div class="float-right">
+                    <form action="/groups/<%= actGroup.url_id %>/members/add" method="post" onsubmit="return addMember(this);">
+                        <input name="user_id" value="<%= studentList[i].id %>" hidden>
+                        <button class="btn btn-success small-text addMemberSubmit" type="submit">Hozzáadás</button>
+                    </form>
+                </div>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</div>
+<%- include('../footer') %>

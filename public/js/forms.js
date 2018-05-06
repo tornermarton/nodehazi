@@ -162,3 +162,25 @@ function checkAddGroup() {
 
     return $('#addGroupName').val().trim() !== "" && $('#addGroupDescription').val().trim() !== "";
 }
+
+function addMember(form) {
+    $.ajax({
+        url: form.getAttribute('action'),
+        method: 'post',
+        dataType: 'json',
+        data: {
+            'user_id': $(form).children('input')[0].getAttribute('value')
+        }
+    }).done( function (result){
+        if (!result.success){
+
+            alert(result.error);
+            return false;
+        }
+
+        $(form).parent().parent().remove();
+        return false;
+    });
+
+    return false;
+}
